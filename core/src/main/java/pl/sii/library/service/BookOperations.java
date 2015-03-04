@@ -16,14 +16,14 @@
  */
 package pl.sii.library.service;
 
-import java.util.logging.Logger;
+import pl.sii.library.model.Book;
 
 import javax.ejb.Stateless;
 import javax.enterprise.event.Event;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
-
-import pl.sii.library.model.Book;
+import javax.persistence.PersistenceContext;
+import java.util.logging.Logger;
 
 // The @Stateless annotation eliminates the need for manual transaction demarcation
 @Stateless
@@ -32,7 +32,7 @@ public class BookOperations {
     @Inject
     private Logger log;
 
-    @Inject
+    @PersistenceContext(name = "libraryPU")
     private EntityManager em;
 
     @Inject

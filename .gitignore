@@ -4,5 +4,6 @@ target/
 .settings
 .project
 .classpath
+classes/*
 **/webapp/*
 !**/webapp/WEB-INF

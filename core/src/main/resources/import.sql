@@ -16,4 +16,4 @@
 --
 
 -- You can use this file to load seed data into the database using SQL statements
-insert into Book (id, title, author, description) values (1, 'Thinking in Java', 'Bruce Eckel', 'You have to read this book')
+insert into Book (id, title, author, description) values (0, 'Thinking in Java', 'Bruce Eckel', 'You have to read this book')

@@ -16,19 +16,18 @@
  */
 package pl.sii.library.data;
 
-import java.util.List;
+import pl.sii.library.model.Book;
 
 import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-
-import pl.sii.library.model.Book;
+import java.util.List;
 
 @ApplicationScoped
 public class BookRepository {
 
-    @Inject
+    @PersistenceContext(name = "libraryPU")
     private EntityManager em;
 
     public Book findById(Long id) {
@@ -41,3 +40,4 @@ public class BookRepository {
         return query.getResultList();
     }
 }
+
