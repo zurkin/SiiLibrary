@@ -14,35 +14,25 @@
     <name>sii library web</name>
     <description>Web component</description>
 
-    <dependencyManagement>
-        <dependencies>
-            <!-- JBoss distributes a complete set of Java EE 6 APIs including
-                a Bill of Materials (BOM). A BOM specifies the versions of a "stack" (or
-                a collection) of artifacts. We use this here so that we always get the correct
-                versions of artifacts. Here we use the jboss-javaee-6.0-with-hibernate stack
-                (you can read this as the JBoss stack of the Java EE Web Profile 6 APIs with
-                extras from the Hibernate family of projects) -->
-            <dependency>
-                <groupId>org.jboss.bom.eap</groupId>
-                <artifactId>jboss-javaee-6.0-with-hibernate</artifactId>
-                <version>${version.jboss.bom.eap}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
-
     <dependencies>
         <!-- Import the ejb project so that the JSF managed bean can use the EJB -->
         <dependency>
             <groupId>pl.sii</groupId>
             <artifactId>sii-library-core</artifactId>
             <type>ejb</type>
+	    <scope>provided</scope>
         </dependency>
 
         <!-- First declare the APIs we depend on and need for compilation.
             All of them are provided by JBoss EAP 6 -->
 
+		 <!-- Import the JAX-RS API, we use provided scope as the API is included in JBoss EAP 6 -->
+		  <dependency>
+			 <groupId>org.jboss.spec.javax.ws.rs</groupId>
+			 <artifactId>jboss-jaxrs-api_1.1_spec</artifactId>
+			 <scope>provided</scope>
+		  </dependency>	
+			
         <!-- Import the CDI API, we use provided scope as the API is included in JBoss EAP 6 -->
         <dependency>
             <groupId>javax.enterprise</groupId>
@@ -50,36 +40,10 @@
             <scope>provided</scope>
         </dependency>
 
-        <!-- Import the Common Annotations API (JSR-250), we use provided
-            scope as the API is included in JBoss EAP 6 -->
-        <dependency>
-            <groupId>org.jboss.spec.javax.annotation</groupId>
-            <artifactId>jboss-annotations-api_1.1_spec</artifactId>
-            <scope>provided</scope>
-        </dependency>
-
         <!-- Import the JSF API, we use provided scope as the API is included in JBoss EAP 6 -->
         <dependency>
             <groupId>org.jboss.spec.javax.faces</groupId>
             <artifactId>jboss-jsf-api_2.1_spec</artifactId>
-            <scope>provided</scope>
-        </dependency>
-
-        <!-- dependency> <groupId>org.jboss.spec.javax.servlet</groupId>
-            <artifactId>jboss-servlet-api_3.0_spec</artifactId> <scope>provided</scope>
-            </dependency -->
-
-        <!-- Import the JAX-RS API, we use provided scope as the API is included in JBoss EAP 6 -->
-        <dependency>
-            <groupId>org.jboss.spec.javax.ws.rs</groupId>
-            <artifactId>jboss-jaxrs-api_1.1_spec</artifactId>
-            <scope>provided</scope>
-        </dependency>
-
-        <!-- Import the EJB API, we use provided scope as the API is included in JBoss EAP 6 -->
-        <dependency>
-            <groupId>org.jboss.spec.javax.ejb</groupId>
-            <artifactId>jboss-ejb-api_3.1_spec</artifactId>
             <scope>provided</scope>
         </dependency>
 
@@ -105,23 +69,9 @@
             </exclusions>
         </dependency>
 
-        <!--Import dependencies to hibernate packages(eg. hibernate-core)
-            depending on features you want to use like Hibernate Session used in the
-            quickstart -->
-        <!--please note that scope is provided as these jars are shipped
-            with as7 -->
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-core</artifactId>
-            <scope>provided</scope>
-        </dependency>
-
-
     </dependencies>
 
     <build>
-        <!-- Set the name of the war, used as the context root when the app
-            is deployed -->
         <finalName>${project.artifactId}</finalName>
         <plugins>
             <plugin>

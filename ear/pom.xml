@@ -52,14 +52,16 @@
                         have any modules (EJB-JARs and WARs) use them -->
                     <defaultLibBundleDir>lib</defaultLibBundleDir>
                     <modules>
-                    <!-- Default context root of the web app is /jboss-ejb-in-ear-web. 
+                    <!-- Default context root of the web app is /sii-library-web
                         If a custom context root is needed, uncomment the following snippet to
                         register our War as a web module and set the contextRoot property -->
-                        <webModule>
-                            <groupId>pl.sii</groupId>
-                            <artifactId>sii-library-web</artifactId>
-                            <contextRoot>/sii-library</contextRoot>
-                        </webModule>
+
+                        <!--<webModule>-->
+                            <!--<groupId>pl.sii</groupId>-->
+                            <!--<artifactId>sii-library-web</artifactId>-->
+                            <!--<contextRoot>/lib</contextRoot>-->
+                        <!--</webModule>-->
+                        
                     </modules>
                     <fileNameMapping>no-version</fileNameMapping>
                 </configuration>
@@ -68,11 +70,31 @@
             <plugin>
                 <groupId>org.jboss.as.plugins</groupId>
                 <artifactId>jboss-as-maven-plugin</artifactId>
-                <version>${version.jboss.maven.plugin}</version>
+
                 <configuration>
                     <skip>false</skip>
                 </configuration>
             </plugin>
         </plugins>
     </build>
+<profiles>
+        <profile>
+            <!-- When built in OpenShift the 'openshift' profile will be used when invoking mvn. -->
+            <!-- Use this profile for any OpenShift specific customization your app will need. -->
+            <!-- By default that is to put the resulting archive into the 'deployments' folder. -->
+            <!-- http://maven.apache.org/guides/mini/guide-building-for-different-environments.html -->
+            <id>openshift</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-ear-plugin</artifactId>
+                        <version>${version.ear.plugin}</version>
+                        <configuration>
+                            <outputDirectory>deployments</outputDirectory>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>
