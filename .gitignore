@@ -6,3 +6,4 @@ target/
 .classpath
 **/webapp/*
 !**/webapp/WEB-INF
+MANIFEST.MF
