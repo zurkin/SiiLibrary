@@ -1,12 +1,10 @@
-package domain.service;
+/*package domain.service;
 
 import java.util.List;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.enterprise.inject.Produces;
 
 import domain.dto.Book;
 import domain.repository.BookRepository;
@@ -21,7 +19,7 @@ public class BookResource {
 	
 	@GET
 //	@Path("/{param}")
-	public List<Book> printMessage(/*@PathParam("param") String msg*/) {
+	public List<Book> printMessage(@PathParam("param") String msg) {
  
 //		String result = "Restful example : " + msg;
 		List<Book> books = bookRepository.getAllBooks();
@@ -32,3 +30,4 @@ public class BookResource {
 	}
 	
 }
+*/
