@@ -5,6 +5,4 @@ target/
 .project
 .classpath
 classes/*
-**/webapp/*
-!**/webapp/WEB-INF
 MANIFEST.MF

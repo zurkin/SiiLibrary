@@ -1,6 +1,7 @@
 package pl.sii.library.rest;
 
 import pl.sii.library.data.BookRepository;
+import pl.sii.library.dto.Request;
 import pl.sii.library.model.Book;
 import pl.sii.library.service.BookOperations;
 
@@ -12,6 +13,7 @@ import javax.validation.Validator;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+
 import java.util.*;
 import java.util.logging.Logger;
 
@@ -60,12 +62,13 @@ public class BookResourceRESTService {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response createBook(Book book) {
+    public Response createBook(Request<Book> request) {
 
         Response.ResponseBuilder builder;
 
         try {
             /* Validates book using bean validation */
+        	Book book = request.getData();
             validateBook(book);
 
             operations.create(book);

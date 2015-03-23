@@ -20,7 +20,6 @@ import java.util.logging.Logger;
 */
 public class Resources {
 
-    @SuppressWarnings("unused")
     @Produces
     @PersistenceContext(name = "libraryPU")
     private EntityManager em;
