@@ -11,7 +11,7 @@
       pool-name="library-pool" enabled="true"
       use-java-context="true">
       <!--this will create DB in folder c:/data on windows and /data on linux-->
-      <connection-url>jdbc:h2:/data/libraryDatabase</connection-url>
+      <connection-url>jdbc:h2:/tmp/data/libraryDatabase</connection-url>
       <driver>h2</driver>
       <security>
          <user-name>sa</user-name>

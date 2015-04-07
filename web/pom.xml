@@ -71,16 +71,75 @@
 
     <build>
         <finalName>${project.artifactId}</finalName>
-        <plugins>
-            <plugin>
-                <artifactId>maven-war-plugin</artifactId>
-                <version>${version.war.plugin}</version>
-                <configuration>
-                    <!-- Java EE 6 doesn't require web.xml, Maven needs to catch up! -->
-                    <failOnMissingWebXml>false</failOnMissingWebXml>
-                </configuration>
-            </plugin>
-        </plugins>
+		<plugins>
+<!-- 			<plugin>
+				<artifactId>maven-clean-plugin</artifactId>
+				<version>2.6.1</version>
+				<configuration>
+					<filesets>
+						<fileset>
+							<directory>src/main/webapp</directory>
+							<excludes>
+								<exclude>**/WEB-INF/</exclude>
+								<exclude>**/siibrary/</exclude>
+								<exclude>**/static/</exclude>
+							</excludes>
+							<followSymlinks>false</followSymlinks>
+						</fileset>
+					</filesets>
+				</configuration>
+			</plugin> -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>${version.war.plugin}</version>
+				<configuration>
+					<warSourceExcludes>siibrary/**</warSourceExcludes>
+					<webResources>
+						<resource>
+							<directory>src/main/webapp/siibrary/dist</directory>
+						</resource>
+					</webResources>
+				</configuration>
+			</plugin>
+			<plugin>
+			    <groupId>pl.allegro</groupId>
+			    <artifactId>grunt-maven-plugin</artifactId>
+			    <version>1.5.0</version>
+			    <configuration>
+			        <!-- relative to src/main/webapp/, default: static -->
+			        <!-- <jsSourceDirectory>../../../../siibrary</jsSourceDirectory> -->
+			        <jsSourceDirectory>siibrary</jsSourceDirectory>
+			        <gruntBuildDirectory>src/main/webapp/siibrary</gruntBuildDirectory>
+			        <!-- <gruntBuildDirectory>src/main/webapp/static</gruntBuildDirectory> -->
+			
+			        <!-- example options usage to get verbose output in logs -->
+			        <gruntOptions>
+			            <gruntOption>--verbose</gruntOption>
+			        </gruntOptions>
+			
+			        <!-- example npm install env variable -->
+			        <npmEnvironmentVar>
+			            <PHANTOMJS_CDNURL>http://cnpmjs.org/downloads</PHANTOMJS_CDNURL>
+			        </npmEnvironmentVar>
+			
+			        <!-- example options usage to filter variables in given resource -->
+<!-- 				        <filteredResources>
+			            <filteredResource>maven-properties.json</filteredResource>
+			        </filteredResources> -->
+				
+			    </configuration>
+			    <executions>
+			        <execution>
+			            <goals>
+			                <!-- <goal>create-resources</goal> -->
+			                <goal>npm</goal>
+			                <goal>grunt</goal>
+			            </goals>
+			        </execution>
+			    </executions>
+			</plugin>
+		</plugins>
     </build>
 
 </project>

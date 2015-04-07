@@ -1,0 +1,63 @@
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+    display: none;
+}
+
+.splash {
+    display: none;
+}
+
+[ng-cloak].splash {
+    display: block !important;
+}
+
+.splash h2 {
+	text-align: center;
+}
+
+.preloader-spinner {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+    border-width: 3px;
+    background: url('../images/preloader.svg') no-repeat 50% 50% transparent;
+}
+
+/*======================================*/
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+
+div.jumbotron {
+	background-color: transparent;
+}
+
+div.container.footer {
+	background-color: #f5f5f5;
+	width: 100%;
+	position: absolute;
+	bottom: 0;
+	padding-top: 10px;
+}
+
+div.container.footer p {
+	margin-left: 10px;
+}
+
+img.logo {
+	height: 150%;
+}
+
+div.main-panel-group {
+	margin-top: 50px;
+}
+
+button.btn-right {
+	float: right;
+}

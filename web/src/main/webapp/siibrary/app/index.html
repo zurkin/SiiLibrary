@@ -1,0 +1,119 @@
+<!doctype html>
+<html class="no-js">
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width">
+  <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+  <!-- build:css(.) styles/vendor.css -->
+  <!-- bower:css -->
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+  <link rel="stylesheet" href="bower_components/font-awsome/css/font-awesome.css" />
+  <link rel="stylesheet" href="bower_components/angular-loading-bar/build/loading-bar.css" />
+  <!-- endbower -->
+  <!-- endbuild -->
+  <!-- build:css(.tmp) styles/main.css -->
+  <link rel="stylesheet" href="styles/main.css">
+  <!-- endbuild -->
+</head>
+<body ng-app="siibraryApp">
+
+  <div class="splash" ng-cloak>
+    <h2>
+      Ładowanie...
+    </h2>
+    <div class="preloader-spinner"></div>
+  </div>
+
+  <nav class="navbar navbar-default navbar-fixed-top" ng-cloak>
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">
+        <img src="images/logo.png" class="logo">
+      </a>
+    </div>
+    <div class="container">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#/">
+          <i class="fa fa-book fa-lg text-info"></i>
+        </a>
+        <a class="navbar-brand" href="#/">SiiBrary</a>
+      </div>
+      <div id="navbar" class="navbar-collapse collapse">
+
+        <ul class="nav navbar-nav" ng-controller="NavCtrl">
+          <li ng-class="navClass('home')"><a href="#/">Home</a></li>
+          <li ng-class="navClass('add')"><a ng-href="#/add">Dodaj książkę</a></li>
+          <li ng-class="navClass('contact')"><a ng-href="#/contact">Contact</a></li>
+        </ul>
+
+        <form class="navbar-form navbar-right">
+          <div class="form-group">
+           <input type="text" placeholder="Email" class="form-control">
+         </div>
+         <div class="form-group">
+           <input type="password" placeholder="Password" class="form-control">
+         </div>
+         <button type="submit" class="btn btn-success">Sign in</button>
+       </form>
+     </div><!--/.navbar-collapse -->
+   </div>
+ </nav>
+
+ <!-- Main jumbotron for a primary marketing message or call to action -->
+ <div class="jumbotron" ng-cloak>
+  <div class="container">
+    <div ng-view=""></div>
+  </div>
+ </div>
+
+
+<div class="container footer" ng-cloak>
+  <!-- Example row of columns -->
+  <div class="row">
+      <!-- <h2>Heading</h2> -->
+      <p>&copy; IKE Soft & IT Consulting 2015</p>
+  </div>
+
+<!--   <footer>
+    <p>&copy; IKE Soft & IT Consulting 2015</p>
+  </footer> -->
+</div> <!-- /container -->
+
+<!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+<script>
+!function(A,n,g,u,l,a,r){A.GoogleAnalyticsObject=l,A[l]=A[l]||function(){
+ (A[l].q=A[l].q||[]).push(arguments)},A[l].l=+new Date,a=n.createElement(g),
+ r=n.getElementsByTagName(g)[0],a.src=u,r.parentNode.insertBefore(a,r)
+}(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-XXXXX-X');
+ga('send', 'pageview');
+</script>
+
+<!-- build:js(.) scripts/vendor.js -->
+<!-- bower:js -->
+<script src="bower_components/jquery/dist/jquery.js"></script>
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+<script src="bower_components/angular-animate/angular-animate.js"></script>
+<script src="bower_components/angular-cookies/angular-cookies.js"></script>
+<script src="bower_components/angular-resource/angular-resource.js"></script>
+<script src="bower_components/angular-route/angular-route.js"></script>
+<script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+<script src="bower_components/angular-touch/angular-touch.js"></script>
+<script src="bower_components/angular-loading-bar/build/loading-bar.js"></script>
+<!-- endbower -->
+<!-- endbuild -->
+
+<!-- build:js({.tmp,app}) scripts/scripts.js -->
+<script src="scripts/app.js"></script>
+<script src="scripts/controllers/main.js"></script>
+<script src="scripts/controllers/add.js"></script>
+<script src="scripts/controllers/contact.js"></script>
+<script src="scripts/services/httpfactory.js"></script>
+<script src="scripts/services/bookservice.js"></script>
+<script src="scripts/controllers/nav.js"></script>
+<!-- endbuild -->
+</body>
+</html>

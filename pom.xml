@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <groupId>pl.sii</groupId>
     <artifactId>sii-library</artifactId>
@@ -14,7 +13,7 @@
         <module>web</module>
         <module>core</module>
         <module>ear</module>
-    </modules>
+  </modules>
     
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -28,7 +27,7 @@
         <!-- other plugin versions -->
         <version.ear.plugin>2.8</version.ear.plugin>
         <version.ejb.plugin>2.3</version.ejb.plugin>
-        <version.war.plugin>2.1.1</version.war.plugin>
+        <version.war.plugin>2.6</version.war.plugin>
 		<version.surefire.plugin>2.10</version.surefire.plugin>
 		
         <!-- maven-compiler-plugin -->
