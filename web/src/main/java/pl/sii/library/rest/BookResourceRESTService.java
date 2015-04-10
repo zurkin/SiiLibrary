@@ -1,9 +1,7 @@
 package pl.sii.library.rest;
 
-import pl.sii.library.data.BookRepository;
-import pl.sii.library.dto.Request;
-import pl.sii.library.model.Book;
-import pl.sii.library.service.BookOperations;
+import java.util.*;
+import java.util.logging.Logger;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -14,8 +12,10 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import java.util.*;
-import java.util.logging.Logger;
+import pl.sii.library.data.BookListProducer;
+import pl.sii.library.domain.persistence.Book;
+import pl.sii.library.domain.repository.BookRepository;
+import pl.sii.library.dto.Request;
 
 /**
  * JAX-RS Example
@@ -34,13 +34,17 @@ public class BookResourceRESTService {
     @Inject
     private BookRepository repository;
 
+/*    @Inject
+    private BookOperations operations;*/
+
     @Inject
-    BookOperations operations;
+    private BookListProducer bookProducer;
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<Book> listAllBooks() {
-        return repository.findAllBooks();
+    	return bookProducer.getBooks();
+//        return repository.findAllBooks();
     }
 
     @GET
@@ -71,7 +75,7 @@ public class BookResourceRESTService {
         	Book book = request.getData();
             validateBook(book);
 
-            operations.create(book);
+            repository.create(book);
 
             // Create an "ok" response
             builder = Response.ok();

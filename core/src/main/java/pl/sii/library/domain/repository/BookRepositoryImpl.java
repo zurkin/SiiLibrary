@@ -13,32 +13,60 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- 
-package pl.sii.library.service;
+ */
+package pl.sii.library.domain.repository;
 
-import pl.sii.library.domain.persistence.Book;
+import java.util.List;
+import java.util.logging.Logger;
 
 import javax.ejb.Stateless;
 import javax.enterprise.event.Event;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
-import java.util.logging.Logger;
+import pl.sii.library.domain.persistence.Book;
 
-// The @Stateless annotation eliminates the need for manual transaction demarcation
 @Stateless
-public class BookOperations {
+public class BookRepositoryImpl implements BookRepository {
 
     @Inject
-    private Logger log;
-
+    private Logger log;	
+	
+    @Inject
+    private Event<Book> bookEventSrc;	
+	
     @PersistenceContext(name = "libraryPU")
     private EntityManager em;
 
-    @Inject
-    private Event<Book> bookEventSrc;
+    /* (non-Javadoc)
+	 * @see pl.sii.library.data.BookRepository#findById(java.lang.Long)
+	 */
+    @Override
+	public Book findById(Long id) {
+        return em.find(Book.class, id);
+    }
 
+    /* (non-Javadoc)
+	 * @see pl.sii.library.data.BookRepository#findAllBooks()
+	 */
+    @Override
+	public List<Book> findAllBooks() {
+        TypedQuery<Book> query = em.createQuery("select b from Book b order by b.title", Book.class);
+        return query.getResultList();
+    }
+    
+    /* (non-Javadoc)
+	 * @see pl.sii.library.data.BookRepository#updateBook(pl.sii.library.model.Book)
+	 */
+    @Override
+	public void updateBook(Book book) {
+    	em.merge(book);
+    	bookEventSrc.fire(book);
+    }
+    
+    @Override
     public void create(Book book) {
         log.info("Creating a book " + book.getTitle());
         if (book.getId() != null) {
@@ -47,7 +75,6 @@ public class BookOperations {
             em.persist(book);
         }
         bookEventSrc.fire(book);
-    }
-
+    }    
 }
-*/
+

@@ -26,7 +26,14 @@ angular.module('siibraryApp')
           headers: {
               'Content-Type': 'application/json'
           }
-        }      
+        },
+      rentBook: {
+          url: 'rest/rent/:data',
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json'
+          }
+        }
     });
 
   });

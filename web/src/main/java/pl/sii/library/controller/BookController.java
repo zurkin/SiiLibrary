@@ -24,8 +24,8 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import pl.sii.library.model.Book;
-import pl.sii.library.service.BookOperations;
+import pl.sii.library.domain.persistence.Book;
+import pl.sii.library.domain.repository.BookRepository;
 
 // The @Model stereotype is a convenience mechanism to make this a request-scoped bean that has an
 // EL name
@@ -38,7 +38,7 @@ public class BookController {
     private FacesContext facesContext;
 
     @Inject
-    private BookOperations bookOperations;
+    private BookRepository bookRepository;
 
     private Book newBook;
 
@@ -50,7 +50,7 @@ public class BookController {
 
     public void createBook() {
         try {
-            bookOperations.create(newBook);
+            bookRepository.create(newBook);
             facesContext.addMessage(null,
                     new FacesMessage(FacesMessage.SEVERITY_INFO, "Book added!", "Book creation successful"));
             initNewBook();

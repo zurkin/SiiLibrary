@@ -14,14 +14,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package pl.sii.library.model;
+package pl.sii.library.domain.persistence;
 
 import java.io.Serializable;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
@@ -62,6 +68,15 @@ public class Book implements Serializable {
 	private String author;
 
 	private String description;
+	
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+	@JoinColumn(name = "RENT_ID")
+	private Rent rent;
+	
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+	@JoinColumn(name = "BOOK_ID")
+	private List<RentQue> rentQue;
+	
 
 	public Long getId() {
 		return id;
@@ -93,5 +108,21 @@ public class Book implements Serializable {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public Rent getRent() {
+		return rent;
+	}
+
+	public void setRent(Rent rent) {
+		this.rent = rent;
+	}
+
+	public List<RentQue> getRentQue() {
+		return rentQue;
+	}
+
+	public void setRentQue(List<RentQue> rentQue) {
+		this.rentQue = rentQue;
 	}
 }
