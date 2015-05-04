@@ -1,6 +1,6 @@
 package pl.sii.library.application;
 
-import javax.enterprise.context.ApplicationScoped;
+import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 import pl.sii.library.domain.model.BookBO;
@@ -9,7 +9,7 @@ import pl.sii.library.domain.persistence.Customer;
 import pl.sii.library.domain.repository.BookRepository;
 import pl.sii.library.domain.repository.UserRepository;
 
-@ApplicationScoped
+@Stateless
 public class RentCommandImpl implements RentCommand {
 
 	@Inject

@@ -1,5 +1,59 @@
 <web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
-  <display-name>SiiLibrary Application</display-name>  
+  <display-name>SiiLibrary Application</display-name>
+  
+	<error-page>
+	    <error-code>403</error-code>
+	    <location>/badCredential.html</location>
+	</error-page>
+
+	<!-- Not protected -->
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>Not protected area</web-resource-name>
+			<url-pattern>/styles/*</url-pattern>
+			<url-pattern>/fonts/*</url-pattern>
+			<url-pattern>/images/*</url-pattern>
+			<url-pattern>/scripts/*</url-pattern>
+            <url-pattern>/login.html</url-pattern>
+            <url-pattern>/error.html</url-pattern>
+			<url-pattern>/badCredential.html</url-pattern>
+		</web-resource-collection>
+    </security-constraint>
+  
+	<security-constraint>
+        <web-resource-collection>
+            <web-resource-name>HtmlAuth</web-resource-name>
+            <description>application security constraints</description>
+            <url-pattern>/*</url-pattern>
+            <http-method>GET</http-method>
+            <http-method>POST</http-method>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>*</role-name>
+        </auth-constraint>
+    </security-constraint>
+    
+    <login-config>
+        <!-- <auth-method>BASIC</auth-method> -->
+        <auth-method>FORM</auth-method>
+        <realm-name>LDAPAuth realm</realm-name>
+        <form-login-config>
+        	<form-login-page>/login.html</form-login-page>
+        	<form-error-page>/error.html</form-error-page>
+     	 </form-login-config>
+    </login-config>
+    
+    <security-role>
+        <role-name>wroclaw</role-name>
+    </security-role>  
+  
+   <session-config>
+       <session-timeout>10</session-timeout>
+   </session-config>
+   
+ 	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+	</welcome-file-list>     
 </web-app>
