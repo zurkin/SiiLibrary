@@ -25,7 +25,7 @@ body {
     margin: 0;
     padding: 0;
     background-color: #fff;
-    background-image: url("../images/login_bg.png");
+    background-image: url("../images/digital-waves-2776.jpg");
     background-position: center bottom;
     background-repeat: no-repeat
 }
@@ -41,16 +41,6 @@ body {
 #outer[id] {
     display: table;
     position: absolute;
-}
-
-#resetLink {
-    margin-top: 205px;
-    margin-left: 438px;
-    position: absolute;
-}
-
-#resetLink a {
-    text-decoration: none;
 }
 
 #middle {
@@ -70,12 +60,13 @@ body {
     position: relative;
     top: -50%;
     text-align: left;
-    margin-left: auto;
+    margin-top: -15%;
+    margin-left: 60%;
     margin-right: auto;
     width: 550px;
     height: 235px;
-    background-image: url("../images/login_box.png");
-    background-repeat: no-repeat
+/*     background-image: url("../images/user_login.jpg");
+    background-repeat: no-repeat */
 }
 
 .brand {
@@ -90,4 +81,8 @@ body {
 
 div.btn-style-center {
 	text-align: center;
+}
+
+#loginBtn {
+	width: 100%;
 }

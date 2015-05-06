@@ -1,28 +1,31 @@
 <!DOCTYPE html>
 <html lang="pl">
-<meta charset="UTF-8"/>
-<meta name="unauthorized" content="true">
-<title>efl-trol</title>
-<!-- build:css(.) styles/vendor.css -->
-<!-- bower:css -->
-<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
-<link rel="stylesheet" href="bower_components/font-awsome/css/font-awesome.css" />
-<!-- endbower -->
-<!-- endbuild -->
-<link href="styles/login.css" rel="stylesheet" media="screen"/>
+	<meta charset="UTF-8"/>
+	<meta name="unauthorized" content="true">
+	<title>efl-trol</title>
+	<!-- build:css(.) styles/vendor.css -->
+	<!-- bower:css -->
+	<!-- <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" /> -->
+	<link rel="stylesheet" href="bower_components/font-awsome/css/font-awesome.css" />
+	<!-- endbower -->
+	<!-- endbuild -->
+	<link href='styles/fonts.css' rel='stylesheet' type='text/css'>
+	<link href="styles/simplex.min.css" rel="stylesheet" media="screen"/>
+	<link href="styles/login.css" rel="stylesheet" media="screen"/>
 <body>
 <nav class="navbar navbar-default">
 	<div class="navbar-header">
 		<a class="navbar-brand" href="#">
+			<img src="images/logo.png"/>
 		</a>
 	</div>
 </nav>
 <div id="outer">
 	<div id="middle">
 		<div id="inner">
-			<div class="col-xs-11">
+			<div class="col-xs-11"> 
 				<div class="row">
-					<h3 class="brand text-center">Sii</h3>
+					<h3 class="brand text-center">Sii<i class="fa fa-book text-info"></i>Library</h3>
 				</div>
 				<form class="form-horizontal" role="form" method="POST" action="j_security_check">
 					<div class="form-group slide-animation">
@@ -42,7 +45,7 @@
 					<div class="form-group">
 					    <div class="col-xs-3"></div>
 						<div class="col-xs-7">
-							<button type="submit" class="btn btn-default">Zaloguj</button>
+							<button id="loginBtn" type="submit" class="btn btn-info">Zaloguj</button>
 						</div>
 					</div>
 				</form>

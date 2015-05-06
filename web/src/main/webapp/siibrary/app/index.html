@@ -14,7 +14,8 @@
   <!-- endbower -->
   <!-- endbuild -->
   <!-- build:css(.tmp) styles/main.css -->
-  <link rel="stylesheet" href="styles/main.css">
+  <link href="styles/simplex.min.css" rel="stylesheet" media="screen"/>
+  <link rel="stylesheet" href="styles/main.css" media="screen">
   <!-- endbuild -->
 </head>
 <body ng-app="siibraryApp">
@@ -40,19 +41,25 @@
         <a class="navbar-brand" href="#/">SiiBrary</a>
       </div>
       <div id="navbar" class="navbar-collapse collapse">
-
         <ul class="nav navbar-nav" ng-controller="NavCtrl">
           <li ng-class="navClass('home')"><a href="#/">Home</a></li>
           <li ng-class="navClass('add')"><a ng-href="#/add">Dodaj książkę</a></li>
           <li ng-class="navClass('contact')"><a ng-href="#/contact">Contact</a></li>
         </ul>
-
-        <div>
-			<a href="logout.jsp"> 
-			     Wyloguj
-			     <i class="fa fa-sign-out"></i>
-			</a>
-		</div>
+		<ul class="nav navbar-nav navbar-right">
+		    <li>
+			    <img src="images/avatar.png" class="img-rounded profile-avatar" popover-placement="bottom" popover-html-unsafe="kholdanowicz">
+		    </li>
+		</ul>
+        
+<!--         <ul class="nav navbar-nav navbar-right">
+		    <li>
+    			<a href="logout.jsp">
+    				Wyloguj
+    				<i class="fa fa-sign-out"></i>
+    			</a>
+		    </li>
+		</ul> -->
      </div><!--/.navbar-collapse -->
    </div>
  </nav>
@@ -100,6 +107,7 @@ ga('send', 'pageview');
 <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
 <script src="bower_components/angular-touch/angular-touch.js"></script>
 <script src="bower_components/angular-loading-bar/build/loading-bar.js"></script>
+<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
 <!-- endbower -->
 <!-- endbuild -->
 
