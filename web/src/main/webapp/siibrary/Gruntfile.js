@@ -345,7 +345,10 @@ module.exports = function (grunt) {
             'views/{,*/}*.html',
             'images/{,*/}*.{webp}',
             'styles/fonts/{,*/}*.*',
-            'styles/login.css'
+            'styles/login.css',
+            'styles/fonts.css',
+            'styles/simplex.min.css',
+            'fonts/ptSansNarrow.woff'
           ]
         }, {
           expand: true,

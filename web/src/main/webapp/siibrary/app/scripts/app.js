@@ -44,7 +44,7 @@ angular
         restrict: 'EA',
         replace: true,
         scope: { title: '@', content: '@', placement: '@', animation: '&', isOpen: '&' },
-        templateUrl: '/popover-html-unsafe-popup.html'
+        templateUrl: 'popover-html-unsafe-popup.html'
       };
   })
     
