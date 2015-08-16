@@ -4,6 +4,8 @@ import java.util.Date;
 
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -11,6 +13,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.UniqueConstraint;
+
+import static pl.sii.library.domain.persistence.RentStatus.*;
 
 @Entity
 @Table(name = "Rent", uniqueConstraints = @UniqueConstraint(columnNames = "id"))
@@ -25,6 +29,8 @@ public class Rent {
 	private Date startDate;
 	@Temporal(TemporalType.DATE)
 	private Date endDate;
+	@Enumerated(EnumType.STRING)
+	private RentStatus status;
 	
 	public Rent() {
 		super();
@@ -35,6 +41,7 @@ public class Rent {
 		this.customer = customer;
 		this.startDate = startDate;
 		this.endDate = endDate;
+		this.status = RESERVED;
 	}
 
 	public Long getId() {

@@ -30,6 +30,18 @@ angular
         templateUrl: 'views/add.html',
         controller: 'AddCtrl'
       })
+      .when('/booksManagement', {
+        templateUrl: 'views/booksManagement.html',
+        controller: 'BooksmanagementCtrl'
+      })
+      .when('/lentBooks', {
+        templateUrl: 'views/lentBooks.html',
+        controller: 'LentBooksCtrl'
+      })
+      .when('/returnBooks', {
+        templateUrl: 'views/returnBooks.html',
+        controller: 'ReturnBooksCtrl'
+      })
       .when('/contact', {
         templateUrl: 'views/contact.html',
         controller: 'ContactCtrl'

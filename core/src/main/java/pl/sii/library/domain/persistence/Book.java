@@ -26,6 +26,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -44,12 +46,18 @@ import org.hibernate.validator.constraints.NotEmpty;
 @Entity
 @XmlRootElement
 @Table(name = "Book", uniqueConstraints = @UniqueConstraint(columnNames = "id"))
+@NamedQueries({
+		@NamedQuery(name=Book.FIND_ALL, query="select b from Book b order by b.title"),
+		@NamedQuery(name=Book.FIND_RESERVED, query="select b from Book b where b.rent is not null and b.rent.status = pl.sii.library.domain.persistence.RentStatus.RESERVED order by b.rent.customer.nick asc")})
 public class Book implements Serializable {
 	/**
 	 * Default value included to remove warning. Remove or modify at will. *
 	 */
 	private static final long serialVersionUID = 1L;
 
+	public static final String FIND_ALL = "Book.findAll";
+	public static final String FIND_RESERVED = "Book.findReserved";
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;

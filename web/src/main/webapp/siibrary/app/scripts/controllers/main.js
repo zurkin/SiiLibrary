@@ -16,20 +16,16 @@ angular.module('siibraryApp')
       'Karma'
     ];
 
-
 	$scope.setupBooks = function() {
 		httpFactory.findAllBooks().$promise.then(function (result) {
 			$scope.books = result.list;
 		});
 	};
-
 	$scope.setupBooks();
-	console.log('books' + $scope.books);
 	
 	$scope.rentBook = function(book) {
 		httpFactory.rentBook({data: book}).$promise.then(function () {
 			$scope.setupBooks();
 		});
 	};
-	
   });

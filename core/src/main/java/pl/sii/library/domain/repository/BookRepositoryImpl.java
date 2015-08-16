@@ -53,7 +53,16 @@ public class BookRepositoryImpl implements BookRepository {
 	 */
     @Override
 	public List<Book> findAllBooks() {
-        TypedQuery<Book> query = em.createQuery("select b from Book b order by b.title", Book.class);
+        TypedQuery<Book> query = em.createNamedQuery(Book.FIND_ALL, Book.class);
+        return query.getResultList();
+    }
+    
+    /* (non-Javadoc)
+     * @see pl.sii.library.domain.repository.BookRepository#findAllReservedBooks()
+     */
+    @Override
+    public List<Book> findAllReservedBooks() {
+    	TypedQuery<Book> query = em.createNamedQuery(Book.FIND_RESERVED, Book.class);
         return query.getResultList();
     }
     

@@ -44,11 +44,12 @@
         <ul class="nav navbar-nav" ng-controller="NavCtrl">
           <li ng-class="navClass('home')"><a href="#/">Home</a></li>
           <li ng-class="navClass('add')"><a ng-href="#/add">Dodaj książkę</a></li>
+          <li ng-class="navClass('add')"><a ng-href="#/booksManagement">Wydania i zwroty</a></li>
           <li ng-class="navClass('contact')"><a ng-href="#/contact">Contact</a></li>
         </ul>
-		<ul class="nav navbar-nav navbar-right">
+		<ul class="nav navbar-nav navbar-right" ng-controller="IndexCtrl">
 		    <li>
-			    <img src="images/avatar.png" class="img-rounded profile-avatar" popover-placement="bottom" popover-html-unsafe="kholdanowicz">
+			    <img src="images/avatar.png" class="img-rounded profile-avatar" popover-placement="bottom" popover-html-unsafe="{{ context.userName }}">
 		    </li>
 		</ul>
         
@@ -119,6 +120,10 @@ ga('send', 'pageview');
 <script src="scripts/services/httpfactory.js"></script>
 <script src="scripts/services/bookservice.js"></script>
 <script src="scripts/controllers/nav.js"></script>
+<script src="scripts/services/contextfactory.js"></script>
+<script src="scripts/controllers/index.js"></script>
+<script src="scripts/controllers/booksmanagement.js"></script>
+<script src="scripts/directives/reservations.js"></script>
 <!-- endbuild -->
 </body>
 </html>

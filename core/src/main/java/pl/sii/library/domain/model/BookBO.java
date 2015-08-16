@@ -3,6 +3,7 @@ package pl.sii.library.domain.model;
 import java.util.Calendar;
 import java.util.Date;
 
+import pl.sii.library.domain.dto.ReservationDTO;
 import pl.sii.library.domain.persistence.Book;
 import pl.sii.library.domain.persistence.Customer;
 import pl.sii.library.domain.persistence.Rent;
@@ -33,6 +34,11 @@ public class BookBO extends BaseBusinessObject<Book> {
 
 	private boolean bookAvailable() {
 		return getEntity().getRent() == null;
+	}
+
+	public ReservationDTO prepareReservationView() {
+		ReservationDTO reservation = new ReservationDTO(entity.getRent().getId(), entity.getRent().getCustomer(), entity);
+		return reservation;
 	}
 
 	

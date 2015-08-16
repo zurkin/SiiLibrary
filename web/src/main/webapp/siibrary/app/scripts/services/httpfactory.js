@@ -11,6 +11,7 @@ angular.module('siibraryApp')
   .factory('httpFactory', function ($resource) {
 
     return $resource(null, null, {
+    	
       findAllBooks: {
         url: 'rest/books',
         method: 'GET',
@@ -26,14 +27,26 @@ angular.module('siibraryApp')
           headers: {
               'Content-Type': 'application/json'
           }
-        },
+      },
       rentBook: {
           url: 'rest/rent/:data',
           method: 'POST',
           headers: {
               'Content-Type': 'application/json'
           }
-        }
+      },
+      findAllReservations: {
+		  url: 'rest/rent',
+		  method: 'GET',
+		  headers: {
+		      'Content-Type': 'application/json'
+		  },
+		  transformResponse: function (data) {
+			  return {
+				  list: angular.fromJson(data)
+			  };
+		  }
+	  }
     });
 
   });
