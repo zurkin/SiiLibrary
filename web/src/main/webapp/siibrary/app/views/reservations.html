@@ -1,5 +1,15 @@
+<br/>
+<br/>
+<div class="row">
+	<div class="col-md-4">
+		<div class="input-group">
+  			<span class="input-group-addon" id="sizing-addon2">Filter:</span>
+  			<input ng-model="searchText" type="text" class="form-control" placeholder="Filter" aria-describedby="sizing-addon2">
+		</div>
+    </div>
+</div>
 <div class="panel-group main-panel-group" id="accordion" role="tablist" aria-multiselectable="true" ng-cloak>
-	<div class="panel panel-default" ng-repeat="reservation in ngReservations">
+	<div class="panel panel-default" ng-repeat="reservation in ngReservations | filter:searchText">
 	  <div class="panel-heading" role="tab" id="headingId_{{ ngTab.title }}_{{ reservation.id }}">
 	    <h4 class="panel-title">
 	      <a class="collapsed" data-toggle="collapse" data-parent="accordion" href="#reservationId_{{ ngTab.title }}_{{ reservation.id }}" aria-expanded="false" aria-controls="reservationId_{{ ngTab.title }}_{{ reservation.id }}" onclick="return false;">
@@ -30,9 +40,14 @@
 			    		</li>
 			    	</ul>
 			    	<hr>
-			    	<div class="row">
+			    	<div class="row" ng-show="ngTab.rentAction">
 			    		<div class="col-md-4 col-md-offset-10">
-			    			<button type="button" class="btn btn-primary" ng-click="rentBook(book)">{{ngTab.content}}</button>
+			    			<button type="button" class="btn btn-primary" ng-click="ngRentAction({reservation: reservation})">{{ngTab.content}}</button>
+			    		</div>
+			    	</div>
+			    	<div class="row" ng-show="ngTab.releaseAction">
+			    		<div class="col-md-4 col-md-offset-10">
+			    			<button type="button" class="btn btn-primary" ng-click="ngReleaseAction({reservation: reservation})">{{ngTab.content}}</button>
 			    		</div>
 			    	</div>
 			  </div>

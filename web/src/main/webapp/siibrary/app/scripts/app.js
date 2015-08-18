@@ -17,10 +17,22 @@ angular
     'ngRoute',
     'ngSanitize',
     'ngTouch',
-    'ui.bootstrap'
+    'ui.bootstrap',
+    'jlareau.pnotify'
   ])
   
-  .config(function ($routeProvider) {
+  .config(function ($httpProvider, $routeProvider) {
+
+      $httpProvider.interceptors.push(function ($q, $location, notificationService) {
+          return {
+              'responseError': function (rejection) {
+            	  notificationService.error(rejection.statusText);
+                  return $q.reject(rejection);
+              }
+          };
+      });
+	  
+	  
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
@@ -49,6 +61,7 @@ angular
       .otherwise({
         redirectTo: '/'
       });
+      
   })
   
   .directive('popoverHtmlUnsafePopup', function () {

@@ -8,7 +8,7 @@
  * Controller of the siibraryApp
  */
 angular.module('siibraryApp')
-  .controller('MainCtrl', function ($scope, httpFactory) {
+  .controller('MainCtrl', function ($scope, httpFactory, notificationService) {
 	
 	$scope.awesomeThings = [
       'HTML5 Boilerplate',
@@ -23,8 +23,9 @@ angular.module('siibraryApp')
 	};
 	$scope.setupBooks();
 	
-	$scope.rentBook = function(book) {
-		httpFactory.rentBook({data: book}).$promise.then(function () {
+	$scope.reserveBook = function(book) {
+		httpFactory.reserveBook({data: book}).$promise.then(function () {
+			notificationService.success('Reservation book process completed successfully');
 			$scope.setupBooks();
 		});
 	};

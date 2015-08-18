@@ -75,4 +75,14 @@ public class Rent {
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
 	}
+
+	public RentStatus getStatus() {
+		return status;
+	}
+
+	public void setStatus(RentStatus status) {
+		this.status = status;
+	}
+	
+	
 }

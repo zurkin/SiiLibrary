@@ -8,7 +8,11 @@ public class ReservationDTO {
 	private Long id;
 	private Customer person;
 	private Book book;
-	
+
+	public ReservationDTO() {
+		super();
+	}
+
 	public ReservationDTO(Long id, Customer person, Book book) {
 		super();
 		this.id = id;

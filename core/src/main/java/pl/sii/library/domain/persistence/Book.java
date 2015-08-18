@@ -48,7 +48,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 @Table(name = "Book", uniqueConstraints = @UniqueConstraint(columnNames = "id"))
 @NamedQueries({
 		@NamedQuery(name=Book.FIND_ALL, query="select b from Book b order by b.title"),
-		@NamedQuery(name=Book.FIND_RESERVED, query="select b from Book b where b.rent is not null and b.rent.status = pl.sii.library.domain.persistence.RentStatus.RESERVED order by b.rent.customer.nick asc")})
+		@NamedQuery(name=Book.FIND_RESERVED_BY_STATUS, query="select b from Book b where b.rent is not null and b.rent.status = :status order by b.rent.customer.nick asc")})
 public class Book implements Serializable {
 	/**
 	 * Default value included to remove warning. Remove or modify at will. *
@@ -56,7 +56,7 @@ public class Book implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	public static final String FIND_ALL = "Book.findAll";
-	public static final String FIND_RESERVED = "Book.findReserved";
+	public static final String FIND_RESERVED_BY_STATUS = "Book.findReserved";
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

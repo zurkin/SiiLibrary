@@ -8,6 +8,7 @@ import javax.ejb.Stateless;
 import pl.sii.library.domain.dto.ReservationDTO;
 import pl.sii.library.domain.model.BookBO;
 import pl.sii.library.domain.persistence.Book;
+import pl.sii.library.domain.persistence.RentStatus;
 import pl.sii.library.domain.repository.BookRepository;
 
 import com.google.common.base.Function;
@@ -21,7 +22,17 @@ public class BookQueryImpl implements BookQuery {
 	
 	@Override
 	public List<ReservationDTO> retriveAllBooksReserved() {
-		List<Book> reservations = bookRepository.findAllReservedBooks();
+		return retriveAllBooksReservedByStatus(RentStatus.RESERVED);
+	}
+	
+	@Override
+	public List<ReservationDTO> retriveAllBooksRented() {
+		return retriveAllBooksReservedByStatus(RentStatus.RENTED);
+	}
+	
+	@Override
+	public List<ReservationDTO> retriveAllBooksReservedByStatus(RentStatus status) {
+		List<Book> reservations = bookRepository.findAllReservedBooks(status);
 		List<ReservationDTO> reservationsView = Lists.transform(reservations, new Function<Book, ReservationDTO>() {
 			@Override
 			public ReservationDTO apply(Book book) {

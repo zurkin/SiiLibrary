@@ -12,7 +12,9 @@ angular.module('siibraryApp')
 		restrict: 'EA',
 		scope: {
 			'ngReservations': '=',
-			'ngTab': '='
+			'ngTab': '=',
+			'ngRentAction': '&',
+			'ngReleaseAction': '&'
 		},
 		templateUrl: 'views/reservations.html'
 	  };

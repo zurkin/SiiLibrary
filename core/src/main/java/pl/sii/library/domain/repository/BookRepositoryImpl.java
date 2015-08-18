@@ -27,6 +27,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 import pl.sii.library.domain.persistence.Book;
+import pl.sii.library.domain.persistence.RentStatus;
 
 @Stateless
 public class BookRepositoryImpl implements BookRepository {
@@ -61,8 +62,9 @@ public class BookRepositoryImpl implements BookRepository {
      * @see pl.sii.library.domain.repository.BookRepository#findAllReservedBooks()
      */
     @Override
-    public List<Book> findAllReservedBooks() {
-    	TypedQuery<Book> query = em.createNamedQuery(Book.FIND_RESERVED, Book.class);
+    public List<Book> findAllReservedBooks(RentStatus status) {
+    	TypedQuery<Book> query = em.createNamedQuery(Book.FIND_RESERVED_BY_STATUS, Book.class);
+    	query.setParameter("status", status);
         return query.getResultList();
     }
     

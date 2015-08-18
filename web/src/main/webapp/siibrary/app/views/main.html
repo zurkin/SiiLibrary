@@ -1,5 +1,15 @@
+<br/>
+<br/>
+<div class="row">
+	<div class="col-md-4">
+		<div class="input-group">
+  			<span class="input-group-addon" id="sizing-addon2">Filter:</span>
+  			<input ng-model="searchText" type="text" class="form-control" placeholder="Filter" aria-describedby="sizing-addon2">
+		</div>
+    </div>
+</div>
 <div class="panel-group main-panel-group" id="accordion" role="tablist" aria-multiselectable="true" ng-cloak>
-  <div class="panel panel-default" ng-repeat="book in books">
+  <div class="panel panel-default" ng-repeat="book in books | filter:searchText">
     <div class="panel-heading" role="tab" id="headingId_{{ book.id }}">
       <h4 class="panel-title">
         <a class="collapsed" data-toggle="collapse" data-parent="accordion" href="#bookId_{{ book.id }}" aria-expanded="false" aria-controls="bookId_{{ book.id }}" onclick="return false;">
@@ -32,7 +42,7 @@
 		    	<hr>
 		    	<div class="row">
 		    		<div class="col-md-4 col-md-offset-10">
-		    			<button type="button" class="btn btn-primary" ng-click="rentBook(book)">Wypożycz</button>
+		    			<button type="button" class="btn btn-primary" ng-click="reserveBook(book)">Wypożycz</button>
 		    		</div>
 		    	</div>
 		  </div>

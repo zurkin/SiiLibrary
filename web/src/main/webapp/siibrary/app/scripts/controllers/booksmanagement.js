@@ -8,7 +8,7 @@
  * Controller of the siibraryApp
  */
 angular.module('siibraryApp')
-  .controller('BooksmanagementCtrl', function ($scope, httpFactory) {
+  .controller('BooksmanagementCtrl', function ($scope, httpFactory, notificationService) {
 	  
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
@@ -16,34 +16,9 @@ angular.module('siibraryApp')
       'Karma'
     ];
     
-    $scope.test = [
-                   { 
-                	   id: 1, 
-                	   person: {
-                		   nickName: 'Nickname 1',
-                		   email: 'Email 1'
-                	   },
-                	   book: {
-                		   title: 'Test', 
-                		   description: 'Opis ksiazki' 
-                	   }
-                   },
-                   { 
-                	   id: 2, 
-                	   person: {
-                		   nickName: 'Nickname 2',
-                		   email: 'Email 2'
-                	   },
-                	   book: {
-                		   title: 'Test 2', 
-                		   description: 'Opis ksiazki 2' 
-                	   }
-                   }
-    ];
-    
     $scope.tabs = [
-                   { title:'Wydania', content:'Wydaj', data: $scope.reservations },
-                   { title:'Zwroty', content:'Zwróć', data: $scope.test },
+                   { title:'Wydania', content:'Wydaj', data: $scope.reservations, rentAction: true },
+                   { title:'Zwroty', content:'Zwróć', data: $scope.rentals, releaseAction: true },
                    { title:'Przeterminowane', content:'Zwróć' }
                  ];
     
@@ -53,6 +28,31 @@ angular.module('siibraryApp')
 			$scope.tabs[0].data = $scope.reservations;
 		});
 	};
-	$scope.setupReservations();    
-    
+
+	$scope.setupRentals = function() {
+		httpFactory.findAllRentals().$promise.then(function (result) {
+			$scope.rentals = result.list;
+			$scope.tabs[1].data = $scope.rentals;
+		});
+	};
+	
+	$scope.setup = function() {
+		$scope.setupReservations();
+		$scope.setupRentals();
+	};
+	$scope.setup();
+	
+	$scope.rent = function(reservation) {
+		httpFactory.rentBook({data: reservation}).$promise.then(function () {
+			notificationService.success('Rent book process completed successfully');
+			$scope.setup();
+		});		
+	};
+
+	$scope.release = function(reservation) {
+		httpFactory.releaseBook({data: reservation}).$promise.then(function () {
+			notificationService.success('Return book process completed successfully');
+			$scope.setup();
+		});		
+	};
   });

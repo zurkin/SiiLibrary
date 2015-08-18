@@ -8,6 +8,7 @@ import pl.sii.library.domain.persistence.Book;
 import pl.sii.library.domain.persistence.Customer;
 import pl.sii.library.domain.persistence.Rent;
 import pl.sii.library.domain.persistence.RentQue;
+import pl.sii.library.domain.persistence.RentStatus;
 
 public class BookBO extends BaseBusinessObject<Book> {
 
@@ -26,14 +27,15 @@ public class BookBO extends BaseBusinessObject<Book> {
 			Date endRentDate = cal.getTime();
 			Rent rent = new Rent(customer, startRentDate, endRentDate);
 			getEntity().setRent(rent);
-		} else {
+		} /*else {
 			RentQue que = new RentQue(customer);
 			getEntity().getRentQue().add(que);
-		}
+		}*/
 	}
 
 	private boolean bookAvailable() {
-		return getEntity().getRent() == null;
+		Rent rentEntity = getEntity().getRent();
+		return rentEntity == null || RentStatus.RELEASED == rentEntity.getStatus();
 	}
 
 	public ReservationDTO prepareReservationView() {

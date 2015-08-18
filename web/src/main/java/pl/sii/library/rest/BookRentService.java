@@ -30,15 +30,60 @@ public class BookRentService {
 	private BookQuery bookQuery;
 
     @POST
+    @Path("/reserve")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response rentBook(Request<Book> request) {
+    public Response reserveBook(Request<Book> request) {
     	
     	Response.ResponseBuilder builder;
 
         try {
         	Book book = request.getData();
-        	rentCommand.rentBook(book);
+        	rentCommand.reserveBook(book);
+            // Create an "ok" response
+            builder = Response.ok();
+        } catch (Exception e) {
+            Map<String, String> responseObj = new HashMap<String, String>();
+            responseObj.put("error", e.getMessage());        	
+            builder = Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(responseObj);
+        }
+
+        return builder.build();
+    }
+    
+    @POST
+    @Path("/rent")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response rentBook(Request<ReservationDTO> request) {
+    	
+    	Response.ResponseBuilder builder;
+
+        try {
+        	ReservationDTO reservation = request.getData();
+        	rentCommand.rentBook(reservation);
+            // Create an "ok" response
+            builder = Response.ok();
+        } catch (Exception e) {
+            Map<String, String> responseObj = new HashMap<String, String>();
+            responseObj.put("error", e.getMessage());        	
+            builder = Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(responseObj);
+        }
+
+        return builder.build();
+    }
+    
+    @POST
+    @Path("/release")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response releaseBook(Request<ReservationDTO> request) {
+    	
+    	Response.ResponseBuilder builder;
+
+        try {
+        	ReservationDTO reservation = request.getData();
+        	rentCommand.releaseBook(reservation);
             // Create an "ok" response
             builder = Response.ok();
         } catch (Exception e) {
@@ -51,34 +96,17 @@ public class BookRentService {
     }
     
     @GET
+    @Path("/reserved")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<ReservationDTO> getAllRents() {
-    	
+    public List<ReservationDTO> getAllBooksReserved() {
     	return bookQuery.retriveAllBooksReserved();
-    	
-/*    	List<ReservationDTO> reservations = new ArrayList<ReservationDTO>();
-    	Customer person = new Customer("nick testowy", "email@testowy.pl");
-		Book book = new Book();
-		book.setId(1l);
-		book.setAuthor("Autor wyborny");
-		book.setDescription("Opis wyborny");
-		book.setTitle("Tytul wyborny");
-		
-		ReservationDTO reservation = new ReservationDTO(1l, person, book);
-		reservations.add(reservation);
-		
-    	person = new Customer("nick testowy 2", "email@testowy.pl2");
-		book = new Book();
-		book.setId(2l);
-		book.setAuthor("Autor wyborny 2");
-		book.setDescription("Opis wyborny 2");
-		book.setTitle("Tytul wyborny 2");
-		
-		reservation = new ReservationDTO(2l, person, book);
-		reservations.add(reservation);
-		
-		return reservations;*/
     }
     
+    @GET
+    @Path("/rented")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<ReservationDTO> getAllBooksRented() {
+    	return bookQuery.retriveAllBooksRented();
+    }
 	
 }
