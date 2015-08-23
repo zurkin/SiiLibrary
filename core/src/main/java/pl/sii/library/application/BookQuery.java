@@ -16,4 +16,8 @@ public interface BookQuery {
 
 	List<ReservationDTO> retriveAllBooksRented();
 
+	public abstract List<ReservationDTO> retriveAllBooksExpired();
+
+//	List<BookDTO> retriveAllBooks();
+
 }

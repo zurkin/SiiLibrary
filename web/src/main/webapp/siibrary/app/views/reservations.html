@@ -29,17 +29,19 @@
 			    <h4 class="media-heading">{{ reservation.book.title }}</h4>
 			            {{ reservation.book.description }}
 			    	<hr>
-			    	<ul class="list-group">
-			    		<li class="">
-			    			Status:
-			    			<span ng-if="reservation.book.rent != null" class="badge alert-danger">Zajęte</span>
-			    			<span ng-if="reservation.book.rent == null" class="badge alert-success">Wolne</span>
-			    			<br>
-			    			Dostępne od: 
-			    			<span class="badge alert-success">01-03-2015</span>
-			    		</li>
-			    	</ul>
-			    	<hr>
+			    	<div ng-if="ngTab.showStatus">
+				    	<ul class="list-group">
+				    		<li class="">
+				    			Status:
+				    			<span ng-if="reservation.book.rent != null" class="badge alert-danger">Zajęte</span>
+				    			<span ng-if="reservation.book.rent == null" class="badge alert-success">Wolne</span>
+				    			<br>
+				    			Dostępne od: 
+				    			<span class="badge alert-success">{{ reservation.book.availabilityDate }}</span>
+				    		</li>
+				    	</ul>
+				    	<hr>
+			    	</div>
 			    	<div class="row" ng-show="ngTab.rentAction">
 			    		<div class="col-md-4 col-md-offset-10">
 			    			<button type="button" class="btn btn-primary" ng-click="ngRentAction({reservation: reservation})">{{ngTab.content}}</button>

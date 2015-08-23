@@ -45,9 +45,9 @@
       </div>
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav" ng-controller="NavCtrl">
-          <li ng-class="navClass('home')"><a href="#/">Home</a></li>
-          <li ng-class="navClass('add')"><a ng-href="#/add">Dodaj książkę</a></li>
-          <li ng-class="navClass('add')"><a ng-href="#/booksManagement">Wydania i zwroty</a></li>
+          <li ng-class="navClass('home')"><a href="#/">Books <span class="badge badge-info">{{ booksSize }}</span></a></li>
+          <li ng-class="navClass('add')"><a ng-href="#/add">Add book</a></li>
+          <li ng-class="navClass('booksManagement')"><a ng-href="#/booksManagement">Books management</a></li>
           <li ng-class="navClass('contact')"><a ng-href="#/contact">Contact</a></li>
         </ul>
 		<ul class="nav navbar-nav navbar-right" ng-controller="IndexCtrl">

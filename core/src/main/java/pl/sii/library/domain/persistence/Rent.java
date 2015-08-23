@@ -36,11 +36,9 @@ public class Rent {
 		super();
 	}
 
-	public Rent(Customer customer, Date startDate, Date endDate) {
+	public Rent(Customer customer) {
 		super();
 		this.customer = customer;
-		this.startDate = startDate;
-		this.endDate = endDate;
 		this.status = RESERVED;
 	}
 

@@ -8,7 +8,7 @@
  * Controller of the siibraryApp
  */
 angular.module('siibraryApp')
-  .controller('MainCtrl', function ($scope, httpFactory, notificationService) {
+  .controller('MainCtrl', function ($rootScope, $scope, httpFactory, notificationService) {
 	
 	$scope.awesomeThings = [
       'HTML5 Boilerplate',
@@ -19,6 +19,7 @@ angular.module('siibraryApp')
 	$scope.setupBooks = function() {
 		httpFactory.findAllBooks().$promise.then(function (result) {
 			$scope.books = result.list;
+			$rootScope.$broadcast('bookEvent', $scope.books.length);
 		});
 	};
 	$scope.setupBooks();

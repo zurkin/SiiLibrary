@@ -86,6 +86,12 @@ public class BookRepositoryImpl implements BookRepository {
             em.persist(book);
         }
         bookEventSrc.fire(book);
-    }    
+    }
+
+	@Override
+	public List<Book> findAllExpiredBooks() {
+    	TypedQuery<Book> query = em.createNamedQuery(Book.FIND_EXPIRED, Book.class);
+        return query.getResultList();
+	}    
 }
 

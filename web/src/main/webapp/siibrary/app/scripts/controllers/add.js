@@ -8,7 +8,7 @@
  * Controller of the siibraryApp
  */
 angular.module('siibraryApp')
-  .controller('AddCtrl', function ($scope, httpFactory) {
+  .controller('AddCtrl', function ($rootScope, $scope, httpFactory, notificationService) {
 
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
@@ -16,13 +16,24 @@ angular.module('siibraryApp')
       'Karma'
     ];    
 
-  	$scope.newBook = {id: null, title: '', author: '', description: ''};
+  	$scope.setupBook = function() {
+  		$scope.newBook = {id: null, title: '', author: '', description: ''};
+  	};
+  	$scope.setupBook();
+  	
   	$scope.addBook = function() {
-  		httpFactory.createBook({data: $scope.newBook});
-/*  		httpFactory.createBook({
-  			title: $scope.newBook.title, 
-  			author: $scope.newBook.author, 
-  			description: $scope.newBook.description});*/
+  		httpFactory.createBook({data: $scope.newBook}).$promise.then(function () {
+  			notificationService.success('Book added successfully');
+  			$scope.setupBook();
+  			$scope.setupBooks();
+		});
+  	};
+  	
+  	$scope.setupBooks = function() {
+  		httpFactory.findAllBooks().$promise.then(function (result) {
+  			$scope.books = result.list;
+  			$rootScope.$broadcast('bookEvent', $scope.books.length);
+  		});
   	};
 
   });

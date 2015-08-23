@@ -15,7 +15,13 @@ angular.module('siibraryApp')
       'AngularJS',
       'Karma'
     ];
-
+    
+    $scope.booksSize = 0;
+    
+    $scope.$on('bookEvent', function (event, data) {
+    	$scope.booksSize = data;  
+    });
+    	
     $scope.navClass = function (page) {
         var currentRoute = $location.path().substring(1) || 'home';
         return page === currentRoute ? 'active' : '';

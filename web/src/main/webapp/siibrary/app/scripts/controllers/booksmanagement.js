@@ -18,8 +18,8 @@ angular.module('siibraryApp')
     
     $scope.tabs = [
                    { title:'Wydania', content:'Wydaj', data: $scope.reservations, rentAction: true },
-                   { title:'Zwroty', content:'Zwróć', data: $scope.rentals, releaseAction: true },
-                   { title:'Przeterminowane', content:'Zwróć' }
+                   { title:'Zwroty', content:'Zwróć', data: $scope.rentals, releaseAction: true, showStatus: true },
+                   { title:'Przeterminowane', data: $scope.expired, content:'Zwróć', showStatus: true }
                  ];
     
 	$scope.setupReservations = function() {
@@ -36,9 +36,17 @@ angular.module('siibraryApp')
 		});
 	};
 	
+	$scope.setupExpired = function() {
+		httpFactory.findAllExpired().$promise.then(function (result) {
+			$scope.expired = result.list;
+			$scope.tabs[2].data = $scope.expired;
+		});
+	};	
+	
 	$scope.setup = function() {
 		$scope.setupReservations();
 		$scope.setupRentals();
+		$scope.setupExpired();
 	};
 	$scope.setup();
 	

@@ -32,11 +32,13 @@
 		    	<ul class="list-group">
 		    		<li class="">
 		    			Status:
-		    			<span ng-if="book.rent != null" class="badge alert-danger">Zajęte</span>
-		    			<span ng-if="book.rent == null" class="badge alert-success">Wolne</span>
+		    			<span ng-if="book.available" class="badge alert-success">Wolne</span>
+		    			<span ng-if="!book.available" class="badge alert-danger">Zajęte</span>
 		    			<br>
-		    			Dostępne od: 
-		    			<span class="badge alert-success">01-03-2015</span>
+		    			<div ng-if="!book.available">
+			    			Dostępne od: 
+			    			<span class="badge alert-success">{{ book.availabilityDate }}</span>
+		    			</div>
 		    		</li>
 		    	</ul>
 		    	<hr>

@@ -20,4 +20,6 @@ public interface BookRepository {
 
 	List<Book> findAllReservedBooks(RentStatus status);
 
+	public abstract List<Book> findAllExpiredBooks();
+
 }

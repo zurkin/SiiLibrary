@@ -108,5 +108,12 @@ public class BookRentService {
     public List<ReservationDTO> getAllBooksRented() {
     	return bookQuery.retriveAllBooksRented();
     }
-	
+
+    @GET
+    @Path("/expired")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<ReservationDTO> getAllBooksExpired() {
+    	return bookQuery.retriveAllBooksExpired();
+    }
+    
 }

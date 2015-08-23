@@ -72,7 +72,19 @@ angular.module('siibraryApp')
 				  list: angular.fromJson(data)
 			  };
 		  }
-	  }
+	  },
+      findAllExpired: {
+		  url: 'rest/rent/expired',
+		  method: 'GET',
+		  headers: {
+		      'Content-Type': 'application/json'
+		  },
+		  transformResponse: function (data) {
+			  return {
+				  list: angular.fromJson(data)
+			  };
+		  }
+	  }	  
     });
 
   });

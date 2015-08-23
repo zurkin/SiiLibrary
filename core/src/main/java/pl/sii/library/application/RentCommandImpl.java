@@ -10,7 +10,9 @@ import pl.sii.library.domain.persistence.Book;
 import pl.sii.library.domain.persistence.Customer;
 import pl.sii.library.domain.persistence.Rent;
 import pl.sii.library.domain.repository.BookRepository;
+import pl.sii.library.domain.repository.RentRepository;
 import pl.sii.library.domain.repository.UserRepository;
+import pl.sii.library.service.ConfigurationService;
 
 @Stateless
 public class RentCommandImpl implements RentCommand {
@@ -19,15 +21,20 @@ public class RentCommandImpl implements RentCommand {
 	private UserRepository userRepository;
 	@Inject
 	private BookRepository bookRepository;
+	@Inject
+	private RentRepository rentRepository;
+	@Inject
+	private ConfigurationService configuration;	
 	
 	/* (non-Javadoc)
 	 * @see pl.sii.library.application.RentCommand#rentBook(pl.sii.library.model.Book)
 	 */
 	@Override
-	public void reserveBook(Book book) {
+	public void reserveBook(Book bookDTO) {
+		Book book = bookRepository.findById(bookDTO.getId());
 		Customer customer = userRepository.getUser();
 		BookBO bookBO = new BookBO(book);
-		bookBO.rent(customer);
+		bookBO.reserve(customer);
 		bookRepository.updateBook(book);
 	}
 
@@ -36,8 +43,9 @@ public class RentCommandImpl implements RentCommand {
 		Book book = reservation.getBook();
 		Rent rent = book.getRent();
 		RentBO rentBO = new RentBO(rent);
-		rentBO.rent();
-		bookRepository.updateBook(book);
+		Integer rentDuration = configuration.getRentDuration();
+		rentBO.rent(rentDuration);
+		rentRepository.updateRent(book);
 	}
 
 	@Override

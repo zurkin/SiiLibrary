@@ -1,7 +1,8 @@
 <div>
 	<br/>
 	<tabset> 
-		<tab ng-repeat="tab in tabs" heading="{{ tab.title }}" active="tab.active" disable="tab.disabled"> 
+		<tab ng-repeat="tab in tabs" active="tab.active" disable="tab.disabled">
+			<tab-heading>{{ tab.title }} <span class="badge badge-info">{{ tab.data.length }}</span> </tab-heading>
 			<br/>
 			<div reservations 
 				ng-reservations="tab.data"
