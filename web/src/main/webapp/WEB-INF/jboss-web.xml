@@ -1,3 +1,11 @@
 <jboss-web>
     <security-domain>java:/jaas/LDAPAuth</security-domain>
+	<security-role>
+        <role-name>WROCLAW_ROLE</role-name><!-- the role name appearing in the standard web.xml dd  -->
+        <principal-name>wroclaw</principal-name><!-- the existing role in your credential repo -->
+    </security-role>
+    <security-role>
+        <role-name>REDAKTORZYFB_ROLE</role-name><!-- the role name appearing in the standard web.xml dd  -->
+        <principal-name>redaktorzy_fb</principal-name><!-- the existing role in your credential repo -->
+    </security-role>    
 </jboss-web>

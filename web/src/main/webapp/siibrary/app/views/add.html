@@ -2,15 +2,15 @@
 	<form>
 	  <div class="form-group">
 	    <label>Tytuł</label>
-	    <input ng-model="newBook.title" type="text" class="form-control" id="title" placeholder="Tytuł"></input>
+	    <input ng-model="newBook.title" type="text" class="form-control shadow" id="title" placeholder="Tytuł"></input>
 	  </div>
 	  <div class="form-group">
 	    <label>Autor</label>
-	    <input ng-model="newBook.author" type="text" class="form-control" id="title" placeholder="Autor"></input>
+	    <input ng-model="newBook.author" type="text" class="form-control shadow" id="title" placeholder="Autor"></input>
 	  </div>	  
 	  <div class="form-group">
 	  	<label>Opis</label>
-		<textarea ng-model="newBook.description" class="form-control" rows="3" placeholder="Opis"></textarea>
+		<textarea ng-model="newBook.description" class="form-control shadow" rows="3" placeholder="Opis"></textarea>
 	  </div>
 	  <button type="button" class="btn btn-primary btn-right" ng-click="addBook()" >Dodaj</button>
 	</form>

@@ -2,15 +2,15 @@
 <br/>
 <div class="row">
 	<div class="col-md-4">
-		<div class="input-group">
-  			<span class="input-group-addon" id="sizing-addon2">Filter:</span>
+		<div class="input-group shadow">
+  			<span class="input-group-addon book-panel" id="sizing-addon2">Filter:</span>
   			<input ng-model="searchText" type="text" class="form-control" placeholder="Filter" aria-describedby="sizing-addon2">
 		</div>
     </div>
 </div>
 <div class="panel-group main-panel-group" id="accordion" role="tablist" aria-multiselectable="true" ng-cloak>
-	<div class="panel panel-default" ng-repeat="reservation in ngReservations | filter:searchText">
-	  <div class="panel-heading" role="tab" id="headingId_{{ ngTab.title }}_{{ reservation.id }}">
+	<div class="panel panel-default shadow" ng-repeat="reservation in ngReservations | filter:searchText">
+	  <div class="panel-heading book-panel" role="tab" id="headingId_{{ ngTab.title }}_{{ reservation.id }}">
 	    <h4 class="panel-title">
 	      <a class="collapsed" data-toggle="collapse" data-parent="accordion" href="#reservationId_{{ ngTab.title }}_{{ reservation.id }}" aria-expanded="false" aria-controls="reservationId_{{ ngTab.title }}_{{ reservation.id }}" onclick="return false;">
 	        <span style="color:red;">Nick: </span>{{ reservation.person.nick }}<span style="color:red;"> Email: </span>{{ reservation.person.email }}

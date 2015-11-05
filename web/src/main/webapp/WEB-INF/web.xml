@@ -17,6 +17,7 @@
 			<url-pattern>/images/*</url-pattern>
 			<url-pattern>/scripts/*</url-pattern>
             <url-pattern>/login.html</url-pattern>
+            <url-pattern>/logout.jsp</url-pattern>
             <url-pattern>/error.html</url-pattern>
 			<url-pattern>/badCredential.html</url-pattern>
 		</web-resource-collection>
@@ -31,7 +32,7 @@
             <http-method>POST</http-method>
         </web-resource-collection>
         <auth-constraint>
-            <role-name>*</role-name>
+            <role-name>WROCLAW_ROLE</role-name>
         </auth-constraint>
     </security-constraint>
     
@@ -46,8 +47,11 @@
     </login-config>
     
     <security-role>
-        <role-name>wroclaw</role-name>
-    </security-role>  
+        <role-name>WROCLAW_ROLE</role-name>
+    </security-role>
+    <security-role>
+        <role-name>REDAKTORZYFB_ROLE</role-name>
+    </security-role>
   
    <session-config>
        <session-timeout>10</session-timeout>

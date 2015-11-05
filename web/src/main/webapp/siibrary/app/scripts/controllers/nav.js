@@ -8,8 +8,8 @@
  * Controller of the siibraryApp
  */
 angular.module('siibraryApp')
-  .controller('NavCtrl', function ($scope, $location) {
     
+.controller('NavCtrl', function ($scope, $rootScope, $location) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -26,5 +26,7 @@ angular.module('siibraryApp')
         var currentRoute = $location.path().substring(1) || 'home';
         return page === currentRoute ? 'active' : '';
     };
+    
+//    $scope.context = $rootScope.context;
 
   });

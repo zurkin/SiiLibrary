@@ -7,7 +7,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.logging.Logger;
 
-import javax.enterprise.context.RequestScoped;
+import javax.annotation.security.RolesAllowed;
+import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
@@ -22,6 +23,8 @@ import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import org.jboss.ejb3.annotation.SecurityDomain;
+
 import pl.sii.library.data.BookListProducer;
 import pl.sii.library.domain.persistence.Book;
 import pl.sii.library.domain.repository.BookRepository;
@@ -33,7 +36,9 @@ import pl.sii.library.dto.Request;
  * This class produces a RESTful service to read/write the contents of the Book table.
  */
 @Path("/books")
-@RequestScoped
+@Stateless
+@SecurityDomain(value = "LDAPAuth")
+@RolesAllowed("wroclaw")
 public class BookResourceRESTService {
     @Inject
     private Logger log;
@@ -56,7 +61,11 @@ public class BookResourceRESTService {
     public List<Book> listAllBooks() {
     	
 //    	return bookQuery.retriveAllBooks();
-    	
+//    	String userName = ctx.getUserName();
+//    	ctx.isUserInRole("WROCLAW_ROLE");
+//    	context.setUserName(userName);
+//    	context.setAdmin(true);
+
     	return bookProducer.getBooks();
 //        return repository.findAllBooks();
     }
@@ -80,6 +89,7 @@ public class BookResourceRESTService {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
+    @RolesAllowed("redaktorzy_fb")
     public Response createBook(Request<Book> request) {
 
         Response.ResponseBuilder builder;

@@ -5,6 +5,8 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class Customer {
 
+	private static final String EMAIL_SUFFIX = "@pl.sii.eu";
+	
 	private String nick;
 	private String email;
 
@@ -12,10 +14,10 @@ public class Customer {
 		super();
 	}
 
-	public Customer(String nick, String email) {
+	public Customer(String nick) {
 		super();
 		this.nick = nick;
-		this.email = email;
+		this.email = nick.concat(EMAIL_SUFFIX);
 	}
 
 	public String getNick() {

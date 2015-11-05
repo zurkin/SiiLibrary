@@ -4,7 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.enterprise.context.RequestScoped;
+import javax.annotation.security.RolesAllowed;
+import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -14,6 +15,8 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import org.jboss.ejb3.annotation.SecurityDomain;
+
 import pl.sii.library.application.BookQuery;
 import pl.sii.library.application.RentCommand;
 import pl.sii.library.domain.dto.ReservationDTO;
@@ -21,7 +24,9 @@ import pl.sii.library.domain.persistence.Book;
 import pl.sii.library.dto.Request;
 
 @Path("/rent")
-@RequestScoped
+@Stateless
+@SecurityDomain(value = "LDAPAuth")
+@RolesAllowed("wroclaw")
 public class BookRentService {
 	
 	@Inject
@@ -77,6 +82,7 @@ public class BookRentService {
     @Path("/release")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
+    @RolesAllowed("redaktorzy_fb")
     public Response releaseBook(Request<ReservationDTO> request) {
     	
     	Response.ResponseBuilder builder;
@@ -98,6 +104,7 @@ public class BookRentService {
     @GET
     @Path("/reserved")
     @Produces(MediaType.APPLICATION_JSON)
+    @RolesAllowed("redaktorzy_fb")
     public List<ReservationDTO> getAllBooksReserved() {
     	return bookQuery.retriveAllBooksReserved();
     }
@@ -105,6 +112,7 @@ public class BookRentService {
     @GET
     @Path("/rented")
     @Produces(MediaType.APPLICATION_JSON)
+    @RolesAllowed("redaktorzy_fb")
     public List<ReservationDTO> getAllBooksRented() {
     	return bookQuery.retriveAllBooksRented();
     }
@@ -112,6 +120,7 @@ public class BookRentService {
     @GET
     @Path("/expired")
     @Produces(MediaType.APPLICATION_JSON)
+    @RolesAllowed("redaktorzy_fb")
     public List<ReservationDTO> getAllBooksExpired() {
     	return bookQuery.retriveAllBooksExpired();
     }

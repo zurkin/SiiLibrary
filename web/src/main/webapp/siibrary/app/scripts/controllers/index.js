@@ -8,17 +8,17 @@
  * Controller of the siibraryApp
  */
 angular.module('siibraryApp')
-  .controller('IndexCtrl', function ($scope, contextFactory) {
+  .controller('IndexCtrl', function ($rootScope, $scope, contextFactory) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
     ];
     
-    $scope.context = {};  
+    $rootScope.context = {};  
 	$scope.setupContext = function() {
 		contextFactory.setupContext().$promise.then(function (result) {
-			$scope.context = result;
+			$rootScope.context = result;
 		});
 	};
 	$scope.setupContext();    

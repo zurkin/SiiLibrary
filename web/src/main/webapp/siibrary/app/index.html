@@ -41,13 +41,13 @@
         <a class="navbar-brand" href="#/">
           <i class="fa fa-book fa-lg text-info"></i>
         </a>
-        <a class="navbar-brand" href="#/">SiiBrary</a>
+        <a class="navbar-brand" href="#/">SiiLibrary</a>
       </div>
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav" ng-controller="NavCtrl">
           <li ng-class="navClass('home')"><a href="#/">Books <span class="badge badge-info">{{ booksSize }}</span></a></li>
-          <li ng-class="navClass('add')"><a ng-href="#/add">Add book</a></li>
-          <li ng-class="navClass('booksManagement')"><a ng-href="#/booksManagement">Books management</a></li>
+          <li ng-if="{{ context.isAdmin }}" ng-class="navClass('add')"><a ng-href="#/add">Add book</a></li>
+          <li ng-if="{{ context.isAdmin }}" ng-class="navClass('booksManagement')"><a ng-href="#/booksManagement">Books management</a></li>
           <li ng-class="navClass('contact')"><a ng-href="#/contact">Contact</a></li>
         </ul>
 		<ul class="nav navbar-nav navbar-right" ng-controller="IndexCtrl">
@@ -80,7 +80,7 @@
   <!-- Example row of columns -->
   <div class="row">
       <!-- <h2>Heading</h2> -->
-      <p>&copy; IKE Soft & IT Consulting 2015</p>
+      <p>&copy; IKE Soft 2015</p>
   </div>
 
 <!--   <footer>
