@@ -6,7 +6,7 @@
 			session.invalidate();
 	%>
 	<%-- <jsp:forward page="login.html" /> --%>
-	<c:redirect url="/index.html"/>
+	<c:redirect url="/"/>
 	<%
 		} else {
 	%>

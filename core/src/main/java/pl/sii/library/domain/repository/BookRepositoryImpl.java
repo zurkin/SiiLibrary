@@ -16,6 +16,8 @@
  */
 package pl.sii.library.domain.repository;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -28,6 +30,7 @@ import javax.persistence.TypedQuery;
 
 import pl.sii.library.domain.persistence.Book;
 import pl.sii.library.domain.persistence.RentStatus;
+import pl.sii.library.service.DateUtils;
 
 @Stateless
 public class BookRepositoryImpl implements BookRepository {
@@ -87,10 +90,26 @@ public class BookRepositoryImpl implements BookRepository {
         }
         bookEventSrc.fire(book);
     }
-
+    
 	@Override
 	public List<Book> findAllExpiredBooks() {
     	TypedQuery<Book> query = em.createNamedQuery(Book.FIND_EXPIRED, Book.class);
+        return query.getResultList();
+	}
+    
+	@Override
+	public List<Book> findAllExpiredIn3Days() {
+    	TypedQuery<Book> query = em.createNamedQuery(Book.FIND_EXPIRED_AFTER_DAYS, Book.class);
+    	Date compareDate = DateUtils.changeCurrentDateByDays(3);
+    	query.setParameter("compareDate", compareDate);
+        return query.getResultList();
+	}
+
+	@Override
+	public List<Book> findAllExpiredBooksAfterWeek() {
+    	TypedQuery<Book> query = em.createNamedQuery(Book.FIND_EXPIRED_AFTER_DAYS, Book.class);
+    	Date compareDate = DateUtils.changeCurrentDateByDays(-7);
+    	query.setParameter("compareDate", compareDate);
         return query.getResultList();
 	}    
 }

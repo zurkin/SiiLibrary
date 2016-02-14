@@ -15,6 +15,9 @@ angular.module('siibraryApp')
       findAllBooks: {
         url: 'rest/books',
         method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        },        
         transformResponse: function (data) {
         	return {
         		list: angular.fromJson(data)

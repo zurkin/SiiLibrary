@@ -24,6 +24,7 @@ import pl.sii.library.dto.Request;
 public class ContextService {
 
 	private final static String ADMIN_ROLE = "redaktorzy_fb";
+//	private final static String ADMIN_ROLE = "wroclaw";
 	
     @Resource 
     private SessionContext ctx;

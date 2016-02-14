@@ -58,7 +58,8 @@ import static pl.sii.library.domain.persistence.RentStatus.*;
 @NamedQueries({
 		@NamedQuery(name=Book.FIND_ALL, query="select b from Book b order by b.title"),
 		@NamedQuery(name=Book.FIND_RESERVED_BY_STATUS, query="select b from Book b where b.rent is not null and b.rent.status = :status order by b.rent.customer.nick asc"),
-		@NamedQuery(name=Book.FIND_EXPIRED, query="select b from Book b where b.rent is not null and b.rent.status = pl.sii.library.domain.persistence.RentStatus.RENTED and b.rent.endDate < current_date() order by b.rent.customer.nick asc")})
+		@NamedQuery(name=Book.FIND_EXPIRED, query="select b from Book b where b.rent is not null and b.rent.status = pl.sii.library.domain.persistence.RentStatus.RENTED and b.rent.endDate < current_date() order by b.rent.customer.nick asc"),
+		@NamedQuery(name=Book.FIND_EXPIRED_AFTER_DAYS, query="select b from Book b where b.rent is not null and b.rent.status = pl.sii.library.domain.persistence.RentStatus.RENTED and b.rent.endDate = :compareDate order by b.rent.customer.nick asc")})
 public class Book implements Serializable {
 	/**
 	 * Default value included to remove warning. Remove or modify at will. *
@@ -69,6 +70,7 @@ public class Book implements Serializable {
 	public static final String FIND_ALL = "Book.findAll";
 	public static final String FIND_RESERVED_BY_STATUS = "Book.findReserved";
 	public static final String FIND_EXPIRED = "Book.findExpired";
+	public static final String FIND_EXPIRED_AFTER_DAYS = "Book.findExpiredAfterDays";
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -76,7 +78,7 @@ public class Book implements Serializable {
 
 	@NotNull
 	@Size(min = 1, max = 50)
-	@Pattern(regexp = "[A-Za-z ]*", message = "must contain only letters and spaces")
+//	@Pattern(regexp = "[A-Za-z1-9 ]*", message = "must contain only letters and spaces")
 	private String title;
 
 	/**
@@ -84,7 +86,7 @@ public class Book implements Serializable {
 	 */
 	@NotNull
 	@NotEmpty
-	@Pattern(regexp = "[A-Za-z ]*", message = "must contain only letters and spaces")
+//	@Pattern(regexp = "[A-Za-z1-9 ]*", message = "must contain only letters and spaces")
 	private String author;
 
 	private String description;

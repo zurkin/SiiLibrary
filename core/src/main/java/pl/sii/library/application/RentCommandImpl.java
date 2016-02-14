@@ -13,6 +13,8 @@ import pl.sii.library.domain.repository.BookRepository;
 import pl.sii.library.domain.repository.RentRepository;
 import pl.sii.library.domain.repository.UserRepository;
 import pl.sii.library.service.ConfigurationService;
+import pl.sii.library.service.MailService;
+import pl.sii.library.service.TemplateService;
 
 @Stateless
 public class RentCommandImpl implements RentCommand {
@@ -25,6 +27,11 @@ public class RentCommandImpl implements RentCommand {
 	private RentRepository rentRepository;
 	@Inject
 	private ConfigurationService configuration;	
+	@Inject
+	private MailService mailService;
+	@Inject
+	private TemplateService templateService;
+
 	
 	/* (non-Javadoc)
 	 * @see pl.sii.library.application.RentCommand#rentBook(pl.sii.library.model.Book)
@@ -36,6 +43,8 @@ public class RentCommandImpl implements RentCommand {
 		BookBO bookBO = new BookBO(book);
 		bookBO.reserve(customer);
 		bookRepository.updateBook(book);
+		String rentMessage = templateService.getRentMessage();
+		mailService.sendMessage("Book reservation", rentMessage, customer.getEmail());
 	}
 
 	@Override

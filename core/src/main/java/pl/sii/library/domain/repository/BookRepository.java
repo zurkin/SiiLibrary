@@ -22,4 +22,8 @@ public interface BookRepository {
 
 	public abstract List<Book> findAllExpiredBooks();
 
+	List<Book> findAllExpiredBooksAfterWeek();
+
+	List<Book> findAllExpiredIn3Days();
+
 }

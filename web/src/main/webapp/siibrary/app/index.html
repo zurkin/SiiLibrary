@@ -6,6 +6,7 @@
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width">
   <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+  <link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
   <!-- build:css(.) styles/vendor.css -->
   <!-- bower:css -->
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
@@ -46,16 +47,15 @@
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav" ng-controller="NavCtrl">
           <li ng-class="navClass('home')"><a href="#/">Books <span class="badge badge-info">{{ booksSize }}</span></a></li>
-          <li ng-if="{{ context.isAdmin }}" ng-class="navClass('add')"><a ng-href="#/add">Add book</a></li>
-          <li ng-if="{{ context.isAdmin }}" ng-class="navClass('booksManagement')"><a ng-href="#/booksManagement">Books management</a></li>
+          <li ng-if="context.admin" ng-class="navClass('add')"><a ng-href="#/add">Add book</a></li>
+          <li ng-if="context.admin" ng-class="navClass('booksManagement')"><a ng-href="#/booksManagement">Books management</a></li>
           <li ng-class="navClass('contact')"><a ng-href="#/contact">Contact</a></li>
         </ul>
 		<ul class="nav navbar-nav navbar-right" ng-controller="IndexCtrl">
 		    <li>
 			    <img src="images/avatar.png" class="img-rounded profile-avatar" popover-placement="bottom" popover-html-unsafe="{{ context.userName }}">
 		    </li>
-		</ul>
-        
+		</ul>        
 <!--         <ul class="nav navbar-nav navbar-right">
 		    <li>
     			<a href="logout.jsp">

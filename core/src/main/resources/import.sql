@@ -16,5 +16,5 @@
 --
 
 -- You can use this file to load seed data into the database using SQL statements
-insert into Rent (id, email, nick, enddate, startdate, status) values (0, 'test', 'test', CAST('2015-08-21' AS DATETIME), CAST('2015-08-18' AS DATETIME), 'RENTED');
-insert into Book (id, title, author, description, rent_id) values (0, 'Thinking in Java', 'Bruce Eckel', 'You have to read this book', 0);
+--insert into Rent (id, email, nick, enddate, startdate, status) values (0, 'holdanowicz@gmail.com', 'test', CAST('2016-02-05' AS DATETIME), CAST('2016-01-23' AS DATETIME), 'RENTED');
+--insert into Book (id, title, author, description, rent_id) values (0, 'Thinking in Java', 'Bruce Eckel', 'You have to read this book', 0);
